@@ -82,9 +82,9 @@ var createTaskActions = function (taskId) {
 
     //create change status dropdown
     var statusSelectEl = document.createElement("select");
-    statusSelectEl.className = "select-status";
-    statusSelectEl.setAttribute("name", "status-chance");
+    statusSelectEl.setAttribute("name", "status-change");
     statusSelectEl.setAttribute("data-task-id", taskId);
+    statusSelectEl.className = "select-status";
     actionContainerEl.appendChild(statusSelectEl);
     //create status options
     var statusChoices = ["To Do", "In Progress", "Completed"];
@@ -158,7 +158,7 @@ var editTask = function (taskId) {
     var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
     //get content from task name and type
-    var taskName = taskSelected.querySelector("h3.task=name").textContent;
+    var taskName = taskSelected.querySelector("h3.task-name").textContent;
     console.log(taskId);
 
     // get task likst item element
@@ -166,13 +166,13 @@ var editTask = function (taskId) {
     console.log(taskType);
 
     //write values of taskName and taskType to form to be edited
-    document.querySelector("input[name-'task-name']").value = taskName;
+    document.querySelector("input[name='task-name']").value = taskName;
     document.querySelector("select[name='task-type']").value = taskType;
 
     // set data attribute to the form with a value of the tasks id so it knows which one is being edited
     formEl.setAttribute("data-task-id", taskId);
     //update forms button to reflect editing a task rather than creating a new one
-    formEl.querySelector("#save=task").textContent = "Save Task";
+    formEl.querySelector("#save-task").textContent = "Save Task";
 };
 
 var deleteTask = function (taskId) {
