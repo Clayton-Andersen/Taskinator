@@ -54,7 +54,7 @@ var createTaskEl = function (taskDataObj) {
     listItemEl.appendChild(taskInfoEl);
 
     //create task actions (buttons and select) for task
-    var taskActionsEl = createTaskEl(taskIdCounter);
+    var taskActionsEl = createTaskActions(taskIdCounter);
     listItemEl.appendChild(taskActionsEl);
     tasksToDoEl.appendChild(listItemEl);
 
