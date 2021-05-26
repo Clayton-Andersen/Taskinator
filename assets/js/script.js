@@ -216,6 +216,24 @@ var deleteTask = function (taskId) {
 var saveTasks = function () {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+var loadTasks = function () {
+    // get task items from localStorage
+    // Convert tasks from the string format back into an array
+    //Iterate though a tasks array and create task elements on the page from it
+    var savedTasks = localStorage.getAttribute("tasks");
+
+    if (!savedTasks) {
+        return false;
+    }
+    savedTasks = JSON.parse(savedTasks);
+    //loop through savedTasks array
+    for (var i = 0; i <savedTasks.length; i++) {
+        //pass each task object in the createTaskEl() function
+        createTaskEl(savedTask[i]);
+    }
+};
+
 //for edit and delete buttons
 pageContentEl.addEventListener("click", taskButtonHandler)
 // create a new task
