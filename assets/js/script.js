@@ -1,12 +1,13 @@
 var taskIdCounter = 0;
 
+var tasks = [];
 var formEl = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
 var tasksInProgressEl = document.querySelector("#tasks-in-progress");
 var tasksCompletedEl = document.querySelector("#tasks-completed");
 var pageContentEl = document.querySelector("#page-content");
 
-var TaskFomrHandler = function (event) {
+var TaskFormHandler = function (event) {
     event.preventDefault();
     var taskNameInput = document.querySelector("input[name='task-name']").value;
     var taskTypeInput = document.querySelector("select[name='task-type']").value;
@@ -137,6 +138,7 @@ var taskStatusChangeHandler = function (event) {
     //find task list item based on event.target's data-task-id attribute
     var taskId = event.target.getAttribute("data-task-id");
 
+    //find the parent task item element based on the id
     var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
     //convert value to lower case
@@ -152,19 +154,17 @@ var taskStatusChangeHandler = function (event) {
 };
 
 var editTask = function (taskId) {
-    console.log(taskId);
+    console.log("editing task #" + taskId);
 
     // get task list item element
     var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
     //get content from task name and type
     var taskName = taskSelected.querySelector("h3.task-name").textContent;
-    console.log(taskId);
-
+    
     // get task likst item element
-    var taskType = taskSelected.querySelector("spen.task-type").textContent;
-    console.log(taskType);
-
+    var taskType = taskSelected.querySelector("span.task-type").textContent;
+    
     //write values of taskName and taskType to form to be edited
     document.querySelector("input[name='task-name']").value = taskName;
     document.querySelector("select[name='task-type']").value = taskType;
@@ -184,6 +184,6 @@ var deleteTask = function (taskId) {
 //for edit and delete buttons
 pageContentEl.addEventListener("click", taskButtonHandler)
 // create a new task
-formEl.addEventListener("submit", TaskFomrHandler);
+formEl.addEventListener("submit", TaskFormHandler);
 //for changing the status
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
